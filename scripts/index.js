@@ -12,6 +12,7 @@ const openPopup = function() {
 
 const closePopup = function() {
   popupElement.classList.remove('popup_opened');
+  scrollElement.classList.remove('page_noscroll');
 };
 
 popupOpenButtonElement.addEventListener('click', openPopup);
