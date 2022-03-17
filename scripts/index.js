@@ -3,9 +3,11 @@
 const popupOpenButtonElement = document.querySelector('.profile__edit');
 const popupElement = document.querySelector('.popup');
 const popupCloseButtonElement = document.querySelector('.popup__close');
+const scrollElement = document.querySelector('.page');
 
 const openPopup = function() {
   popupElement.classList.add('popup_opened');
+  scrollElement.classList.add('page_noscroll');
 };
 
 const closePopup = function() {
