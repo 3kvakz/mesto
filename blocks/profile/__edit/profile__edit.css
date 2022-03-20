@@ -1,0 +1,32 @@
+.profile__edit {
+  border: solid 1px white;
+  background-color: black;
+  background-image: url(../../../images/pencil.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px;
+  top: 15px;
+  right: -42px;
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  position: absolute;
+}
+
+.profile__edit:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+  .profile__edit {
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px;
+    top: 8px;
+    right: -29px;
+  }
+}

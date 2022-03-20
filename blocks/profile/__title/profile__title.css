@@ -1,0 +1,10 @@
+.profile__title {
+  position: relative;
+  width: fit-content;
+}
+
+@media screen and (max-width: 991px) {
+  .profile__title {
+    margin: 0 auto;
+  }
+}
