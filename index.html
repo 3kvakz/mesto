@@ -11,16 +11,36 @@
 <body>
   <div class="page">
 
-    <div class="popup">
+    <div class="popup popup_type_edit">
       <form class="popup__container" name="popup">
-        <img class="popup__close" src="images/close.svg" alt="Крестик">
+        <button class="popup__close" type="button"></button>
         <div class="popup__form">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__field" name="name" id="name" placeholder="Имя">
-          <input class="popup__field" name="job" id="job" placeholder="Роль">
+          <input class="popup__field" name="name" id="name" type="text" placeholder="Имя" required>
+          <input class="popup__field" name="job" id="job" type="text" placeholder="Роль" required>
           <button class="popup__submit" type="submit">Сохранить</button>
         </div>
       </form>
+    </div>
+
+    <div class="popup popup_type_new-card">
+      <form class="popup__container" name="popup">
+        <button class="popup__close" type="button"></button>
+        <div class="popup__form">
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__field" name="place" id="place" type="text" placeholder="Название" required>
+          <input class="popup__field" name="link" id="link" type="url" placeholder="Ссылка на картинку" required>
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="popup popup_type_image">
+      <div class="popup__container-image" name="popup">
+        <button class="popup__close" type="button"></button>
+        <img class="popup__image">
+        <p class="popup__caption"></p>
+      </div>
     </div>
 
     <header class="header">
@@ -40,63 +60,11 @@
             <p class="profile__job">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__button" type="button"></button>
+        <button class="profile__add" type="button"></button>
       </section>
 
       <section class="elements">
-
-        <ul class="elements__items">
-
-          <li class="element">
-            <img class="element__image" src="images/karachayevsk.jpg" alt="Храм">
-            <div class="element__caption">
-              <h2 class="element__text">Карачаевск</h2>
-              <button class="element__like element__like_status_disabled" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__image" src="images/elbrus.jpg" alt="Поля, закат или восход, гора вдали">
-            <div class="element__caption">
-              <h2 class="element__text">Гора Эльбрус</h2>
-              <button class="element__like element__like_status_disabled" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__image" src="images/dombai.jpg" alt="Горы и лес">
-            <div class="element__caption">
-              <h2 class="element__text">Домбай</h2>
-              <button class="element__like element__like_status_disabled" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__image" src="images/elbrus.jpg" alt="Поля, закат или восход, гора вдали">
-            <div class="element__caption">
-              <h2 class="element__text">Гора Эльбрус</h2>
-              <button class="element__like element__like_status_disabled" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__image" src="images/dombai.jpg" alt="Горы и лес">
-            <div class="element__caption">
-              <h2 class="element__text">Домбай</h2>
-              <button class="element__like element__like_status_disabled" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__image" src="images/karachayevsk.jpg" alt="Храм">
-            <div class="element__caption">
-              <h2 class="element__text">Карачаево-Черкесия</h2>
-              <button class="element__like element__like_status_disabled" type="button"></button>
-            </div>
-          </li>
-
-        </ul>
-
+        <ul class="elements__items"></ul>
       </section>
 
     </main>
@@ -106,6 +74,18 @@
     </footer>
 
   </div>
+
+  <template id="card">
+    <li class="element">
+      <button class="element__trash" type="button"></button>
+      <img class="element__image">
+      <div class="element__caption">
+        <h2 class="element__text"></h2>
+        <button class="element__like" type="button"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="./scripts/index.js"></script>
 </body>
 
