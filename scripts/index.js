@@ -1,31 +1,3 @@
-//Initial cards
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  }
-]; 
-
 //Consts
 const containerCards = document.querySelector('.elements__items');
 const cardTemplate = document.querySelector('#card').content;
@@ -70,18 +42,19 @@ function createCard(nameNewCard, linkNewCard) {
   const likeButton = newCardElement.querySelector('.element__like');
   likeButton.addEventListener('click', likeElement);
  
-  const deleteCard = newCardElement.querySelector('.element__trash');
-  deleteCard.addEventListener('click', () => {
-    const trashButton = deleteCard.closest('.element');
-    trashButton.remove();
-  });
+  const trashButton = newCardElement.querySelector('.element__trash');
+  trashButton.addEventListener('click', deleteCard);
 
-  imageCard.addEventListener('click', evt => {
+  function deleteCard() {
+    const cardToDelete = trashButton.closest('.element');
+    cardToDelete.remove();
+  };
+
+  imageCard.addEventListener('click', () => {
     openPopup(popupImage);
-    const goal = evt.target;
-    captionPopupImage.textContent = goal.alt;
-    srcPopupImage.src = goal.src;
-    srcPopupImage.alt = goal.alt;
+    captionPopupImage.textContent = nameNewCard;
+    srcPopupImage.src = linkNewCard;
+    srcPopupImage.alt = nameNewCard;
   });
 
   return newCardElement;
@@ -101,14 +74,14 @@ function closePopup (popup) {
   scrollElement.classList.remove('page_noscroll');
 };
 
-function formEditSubmitHandler (evt) {
+function handleEditFormSubmit (evt) {
   evt.preventDefault();
   nameHere.textContent = nameInput.value;
   jobHere.textContent = jobInput.value;
   closePopup(popupEdit);
 }
 
-function formNewCardSubmitHandler (evt) {
+function handleNewCardFormSubmit (evt) {
   evt.preventDefault();
   const newCard = createCard(titleInput.value, srcInput.value);
   containerCards.prepend(newCard);
@@ -136,5 +109,5 @@ popupCloseButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 popupCloseButtonNewCard.addEventListener('click', () => closePopup(popupNewCard));
 popupCloseButtonImage.addEventListener('click', () => closePopup(popupImage));
 
-formEdit.addEventListener('submit', formEditSubmitHandler);
-formNewCard.addEventListener('submit', formNewCardSubmitHandler);
+formEdit.addEventListener('submit', handleEditFormSubmit);
+formNewCard.addEventListener('submit', handleNewCardFormSubmit);

@@ -1,6 +1,6 @@
 .element__trash {
   position: absolute;
-  background-image: url(../../../../mesto/images/trash.svg);
+  background-image: url(../../../images/trash.svg);
   background-size: contain;
   border: none;
   background-color: transparent;
