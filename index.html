@@ -12,27 +12,33 @@
   <div class="page">
 
     <div class="popup popup_type_edit">
-      <form class="popup__container" name="popup">
+      <form class="popup__container" name="popup" novalidate>
         <button class="popup__close" type="button"></button>
         <div class="popup__form">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__field" name="name" id="name" type="text" placeholder="Имя" required>
-          <input class="popup__field" name="job" id="job" type="text" placeholder="Роль" required>
+          <input class="popup__field" name="name" id="name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
+          <span class="name-error popup__field-error">Вы пропустили это поле.</span>
+          <input class="popup__field" name="job" id="job" type="text" placeholder="Роль" minlength="2" maxlength="200" required>
+          <span class="job-error popup__field-error">Вы пропустили это поле.</span>
           <button class="popup__submit" type="submit">Сохранить</button>
         </div>
       </form>
+      <div class="popup__overlay popup__overlay_type_edit"></div> 
     </div>
 
     <div class="popup popup_type_new-card">
-      <form class="popup__container" name="popup">
+      <form class="popup__container" name="popup" novalidate>
         <button class="popup__close" type="button"></button>
         <div class="popup__form">
           <h2 class="popup__title">Новое место</h2>
-          <input class="popup__field" name="place" id="place" type="text" placeholder="Название" required>
+          <input class="popup__field" name="place" id="place" type="text" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="place-error popup__field-error">Вы пропустили это поле.</span>
           <input class="popup__field" name="link" id="link" type="url" placeholder="Ссылка на картинку" required>
-          <button class="popup__submit" type="submit">Сохранить</button>
+          <span class="link-error popup__field-error">Вы пропустили это поле.</span>
+          <button class="popup__submit" type="submit">Создать</button>
         </div>
       </form>
+      <div class="popup__overlay popup__overlay_type_new-card"></div> 
     </div>
 
     <div class="popup popup_type_image">
@@ -41,6 +47,7 @@
         <img class="popup__image" src="#" alt="">
         <p class="popup__caption"></p>
       </div>
+      <div class="popup__overlay popup__overlay_type_image"></div> 
     </div>
 
     <header class="header">
@@ -87,6 +94,7 @@
   </template>
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-//Consts
 const containerCards = document.querySelector('.elements__items');
 const cardTemplate = document.querySelector('#card').content;
 const cardElement = cardTemplate.querySelector('.element');
@@ -30,7 +29,10 @@ const jobHere = document.querySelector('.profile__job');
 
 const scrollElement = document.querySelector('.page');
 
-//Functions
+const editOverlay = document.querySelector('.popup__overlay_type_edit');
+const newCardOverlay = document.querySelector('.popup__overlay_type_new-card');
+const imageOverlay = document.querySelector('.popup__overlay_type_image');
+
 function createCard(nameNewCard, linkNewCard) {
   const newCardElement = cardElement.cloneNode(true);
   const titleCard = newCardElement.querySelector('.element__text');
@@ -67,11 +69,13 @@ function likeElement (evt) {
 function openPopup (popup) {
   popup.classList.add('popup_opened');
   scrollElement.classList.add('page_noscroll');
+  document.addEventListener('keydown', closeByEsc);
 };
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
   scrollElement.classList.remove('page_noscroll');
+  document.addEventListener('keydown', closeByEsc);
 };
 
 function handleEditFormSubmit (evt) {
@@ -89,12 +93,19 @@ function handleNewCardFormSubmit (evt) {
   closePopup(popupNewCard);
 }
 
+//ESC button popup closing
+function closeByEsc (evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
 //Initial cards uploading
 initialCards.forEach(item => {
   containerCards.append(createCard(item.name, item.link));
   });
 
-//Listeners
 popupOpenButtonEdit.addEventListener('click', () => {
   openPopup(popupEdit)
   nameInput.value = nameHere.textContent;
@@ -102,7 +113,7 @@ popupOpenButtonEdit.addEventListener('click', () => {
 });
 
 popupOpenButtonNewCard.addEventListener('click', () => {
-  openPopup(popupNewCard)
+  openPopup(popupNewCard);
 });
 
 popupCloseButtonEdit.addEventListener('click', () => closePopup(popupEdit));
@@ -111,3 +122,7 @@ popupCloseButtonImage.addEventListener('click', () => closePopup(popupImage));
 
 formEdit.addEventListener('submit', handleEditFormSubmit);
 formNewCard.addEventListener('submit', handleNewCardFormSubmit);
+
+editOverlay.addEventListener('click', () => closePopup(popupEdit));
+newCardOverlay.addEventListener('click', () => closePopup(popupNewCard));
+imageOverlay.addEventListener('click', () => closePopup(popupImage));
