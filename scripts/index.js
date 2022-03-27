@@ -27,11 +27,11 @@ const srcInput = popupNewCard.querySelector('#link');
 const nameHere = document.querySelector('.profile__name');
 const jobHere = document.querySelector('.profile__job');
 
-const scrollElement = document.querySelector('.page');
-
 const editOverlay = document.querySelector('.popup__overlay_type_edit');
 const newCardOverlay = document.querySelector('.popup__overlay_type_new-card');
 const imageOverlay = document.querySelector('.popup__overlay_type_image');
+
+const addingCreateButton = popupNewCard.querySelector('.popup__submit_type_new-card');
 
 function createCard(nameNewCard, linkNewCard) {
   const newCardElement = cardElement.cloneNode(true);
@@ -68,14 +68,12 @@ function likeElement (evt) {
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
-  scrollElement.classList.add('page_noscroll');
   document.addEventListener('keydown', closeByEsc);
 };
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
-  scrollElement.classList.remove('page_noscroll');
-  document.addEventListener('keydown', closeByEsc);
+  document.removeEventListener('keydown', closeByEsc);
 };
 
 function handleEditFormSubmit (evt) {
@@ -90,8 +88,21 @@ function handleNewCardFormSubmit (evt) {
   const newCard = createCard(titleInput.value, srcInput.value);
   containerCards.prepend(newCard);
   formNewCard.reset();
+  addingCreateButton.classList.add('popup__submit_disabled');
+  addingCreateButton.setAttribute('disabled', 'true');
   closePopup(popupNewCard);
 }
+
+// function handleAddingFormSubmit (evt) {
+//   evt.preventDefault();
+//   const newCard = createCard(titleInput.value, srcInput.value);
+//   containerCard.prepend(newCard);
+//   addingForm.reset();
+//   addingCreateButton.classList.add('popup__button_disabled');
+//   addingCreateButton.setAttribute('disabled', 'true');
+
+//   closePopup(addingPopup);
+// }
 
 //ESC button popup closing
 function closeByEsc (evt) {
